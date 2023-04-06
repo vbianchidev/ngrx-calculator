@@ -1,4 +1,1 @@
-export interface MathOperation {
-  base: number;
-  mutation: number;
-}
+export type MathOperator = '+' | '-' | '/' | '*';

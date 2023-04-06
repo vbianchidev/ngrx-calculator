@@ -1,1 +1,48 @@
-<p>calculator works!</p>
+<main class="shadow">
+  <div class="display">
+    <div class="calc" *ngIf="baseNumber$ | async; else initialState">
+      {{ baseNumber$ | async }}
+      <span class="symbol"> {{ operator$ | async }} </span>
+      {{ mutationNumber$ | async }}
+    </div>
+    <ng-template #initialState>
+      <div class="calc">0</div>
+    </ng-template>
+    <div class="result" *ngIf="result$ | async">
+      <span class="symbol equal">=</span> {{ result$ | async }}
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="number" (click)="onTypeNumber(7)">7</button>
+    <button class="number" (click)="onTypeNumber(8)">8</button>
+    <button class="number" (click)="onTypeNumber(9)">9</button>
+    <button class="number" (click)="onClear()">C</button>
+
+    <button class="number" (click)="onTypeNumber(4)">4</button>
+    <button class="number" (click)="onTypeNumber(5)">5</button>
+    <button class="number" (click)="onTypeNumber(6)">6</button>
+    <button class="operator" (click)="onTypeOperator('*')">x</button>
+
+    <button class="number" (click)="onTypeNumber(1)">1</button>
+    <button class="number" (click)="onTypeNumber(2)">2</button>
+    <button class="number" (click)="onTypeNumber(3)">3</button>
+    <button class="operator" (click)="onTypeOperator('-')">-</button>
+
+    <button class="number" (click)="onTypeNumber(0)">0</button>
+
+    <button class="operator" (click)="onTypeOperator('/')">÷</button>
+    <button class="operator" (click)="onTypeOperator('+')">+</button>
+    <button class="equal" (click)="onCalculate()">=</button>
+  </div>
+</main>
+
+<footer>
+  <span>
+    Made with ❤ by
+    <b>
+      <a href="https://github.com/vbianchidev/" target="_blank">
+        Vitor Bianchi
+      </a>
+    </b>
+  </span>
+</footer>

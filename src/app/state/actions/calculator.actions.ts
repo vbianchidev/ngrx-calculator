@@ -1,25 +1,16 @@
-/* eslint-disable prettier/prettier */
 import { createAction, props } from '@ngrx/store';
-import { MathOperation } from 'src/app/types/calc.type';
+import { MathOperator } from 'src/app/types/calc.type';
 
-export const add = createAction(
-  '[Calculator] Add', 
-  props<{ operation: MathOperation }>()
+export const typeDigit = createAction(
+  '[Calculator] Digit',
+  props<{ digit: number }>()
 );
 
-export const subtract = createAction(
-  '[Calculator] Subtract',
-  props<{ operation: MathOperation }>()
+export const typeOperator = createAction(
+  '[Calculator] Operator',
+  props<{ operator: MathOperator }>()
 );
 
-export const multiply = createAction(
-  '[Calculator] Multiply',
-  props<{ operation: MathOperation }>()
-);
-
-export const divide = createAction(
-  '[Calculator] Divide',
-  props<{ operation: MathOperation }>()
-);
+export const calculate = createAction('[Calculator] Calculate');
 
 export const reset = createAction('[Calculator] Reset');
