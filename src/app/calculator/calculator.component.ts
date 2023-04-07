@@ -1,5 +1,9 @@
 /* eslint-disable @ngrx/no-typed-global-store */
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -51,5 +55,28 @@ export class CalculatorComponent {
 
   onClear() {
     this.store.dispatch(reset());
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeydown(event: KeyboardEvent) {
+    if (/^[0-9]$/.test(event.key))
+      return this.onTypeNumber(Number.parseInt(event.key));
+
+    if (event.key === '*') return this.onTypeOperator('*');
+    if (event.key === '/') return this.onTypeOperator('/');
+    if (event.key === '-') return this.onTypeOperator('-');
+    if (event.key === '+') return this.onTypeOperator('+');
+
+    if (event.key === '=') return this.onCalculate();
+  }
+
+  @HostListener('document:keydown.enter', ['$event'])
+  handleKeyboardEvent() {
+    this.onCalculate();
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  handleEscape() {
+    this.onClear();
   }
 }
